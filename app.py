@@ -106,10 +106,26 @@ elif st.session_state.stage == "select":
     st.title("📚 수사할 사건을 선택하세요")
     st.write("표지 아래의 버튼을 눌러 수사를 시작합니다.")
     
-    cols = st.columns(2)
+    # 1. 사진 높이 통일 스타일 (반드시 표지를 그리기 전에 배치)
+    st.markdown("""
+        <style>
+        div[data-testid="stImage"] img {
+            height: 500px !important; /* 모든 표지 높이를 300px로 강제 통일 */
+            object-fit: contain !important; /* 비율 유지 */
+            background-color: #f9f9f9; /* 여백 배경색 */
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    # 2. 2열 레이아웃으로 도서 목록 출력
+    cols = st.columns(2) 
     for idx, (title, info) in enumerate(books.items()):
         with cols[idx % 2]:
-            st.image(info['image'], use_container_width=True)
+            # 이미지 출력
+            if "image" in info:
+                st.image(info['image'], use_container_width=True)
+            
+            # 수사하기 버튼 (이미지 바로 아래에 위치)
             if st.button(f"🔎 {title} 수사", key=f"btn_{title}"):
                 st.session_state.selected_book = title
                 st.session_state.stage = "solve"
