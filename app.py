@@ -3,8 +3,8 @@ from datetime import datetime # 시간을 다루는 도구 추가
 
 st.set_page_config(page_title="AI 거짓말 탐정", layout="centered")
 
-start_time = datetime(2026, 4, 1, 11, 0) 
-current_time = datetime.now()
+start_time = datetime(2026, 4, 1, 12, 0) 
+current_time = datetime.utcnow() + timedelta(hours=9)
 
 if "admin_mode" not in st.session_state:
     st.session_state.admin_mode = False
