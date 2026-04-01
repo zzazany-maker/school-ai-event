@@ -149,7 +149,7 @@ elif st.session_state.stage == "solve":
     user_real = st.text_input("진짜 정답", key=f"real_{book_title}")
 
     if st.button("🚨 보고서 제출 (판독)"):
-        if not user_fake or not user_real or not user_name:
+        if not user_fake or not user_real:
             st.warning("모든 칸을 채워야 응모가 가능해!")
         else:
             # 판독 로직
@@ -163,13 +163,13 @@ elif st.session_state.stage == "solve":
             is_real_correct = any(k.replace(" ", "").lower() in clean_user_real for k in data['real_keywords'])
             
             if is_fake_correct and is_real_correct:
-                st.success(f"🎊 완벽해, {user_name} 탐정!")
+                st.success(f"🎊 완벽한 추리입니다, 탐정님! 아래 양식에 응모 정보를 입력해주세요.")
                 st.balloons()
                 # Tally 연동
                 tally_url = "https://tally.so/embed/zxJXoM?hideTitle=1&transparentBackground=1&dynamicHeight=1"
                 st.components.v1.html(f'<iframe src="{tally_url}" width="100%" height="500" frameborder="0"></iframe>', height=550)
             else:
-                st.error("앗! 틀린 부분이 있는 것 같아.")
+                st.error("앗! 수사 결과가 정확하지 않아. 다시 확인해볼까?")
                 st.info(f"💡 힌트: {data['hint']}")
 
     if st.button("🔄 처음으로 돌아가기"):
