@@ -28,7 +28,6 @@ if current_time < start_time and not st.session_state.admin_mode:
     
     st.error(f"현재 사건을 정밀 감지 중입니다... 🔍")
     st.info(f"📅 **행사 시작까지:** {remaining.days}일 {hours}시간 {minutes}분 남았습니다.")
-    st.write("내일 정해진 시간에 QR코드를 다시 스캔해 주세요!")
     
     # 아래쪽 코드가 실행되지 않도록 여기서 멈춤
     st.stop()
