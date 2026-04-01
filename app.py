@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import datetime # 시간을 다루는 도구 추가
+from datetime import datetime, timedelta
 
 st.set_page_config(page_title="AI 거짓말 탐정", layout="centered")
 
