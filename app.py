@@ -141,13 +141,12 @@ elif st.session_state.stage == "solve":
         st.rerun()
 
     st.title(f"🕵️ 수사 중: {book_title}")
-    st.image(data['image'], width=200)
+    st.image(data['image'], width=300)
     st.info(f"**AI 요약본**\n\n{data['summary']}")
 
     # 입력창 (책마다 고유 key 부여하여 에러 방지)
     user_fake = st.text_input("가짜 정보", key=f"fake_{book_title}")
     user_real = st.text_input("진짜 정답", key=f"real_{book_title}")
-    user_name = st.text_input("학번과 이름", key="user_name")
 
     if st.button("🚨 보고서 제출 (판독)"):
         if not user_fake or not user_real or not user_name:
